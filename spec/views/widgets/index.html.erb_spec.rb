@@ -40,4 +40,16 @@ RSpec.describe "widgets/index", type: :view do
       expect(rendered).to match /BBBB _partial\.html\.erb BBBB/
     end
   end
+
+  describe "SubdirHelperTest::Subdir" do
+    it "calls the helper in index.html.erb" do
+      render
+      expect(rendered).to match /SUBDIR index\.html\.erb SUBDIR/
+    end
+
+    it "calls the helper in _partial.html.erb" do
+      render
+      expect(rendered).to match /SUBDIR _partial\.html\.erb SUBDIR/
+    end
+  end
 end
