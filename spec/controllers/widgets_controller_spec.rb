@@ -37,10 +37,20 @@ RSpec.describe WidgetsController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all widgets as @widgets" do
-      widget = Widget.create! valid_attributes
+    let(:widget) { Widget.create! valid_attributes }
+
+    before do
       get :index, params: {}, session: valid_session
+    end
+
+    it "assigns all widgets as @widgets" do
       expect(assigns(:widgets)).to eq([widget])
+    end
+
+    context "render views" do
+      render_views
+
+      it { expect(response.body).to match /SUBDIR/ }
     end
   end
 
