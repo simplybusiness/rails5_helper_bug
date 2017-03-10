@@ -52,6 +52,41 @@ RSpec.describe WidgetsController, type: :controller do
 
       it { expect(response.body).to match /SUBDIR/ }
     end
+
+    context "helpers" do
+      render_views
+
+      describe "WidgetsHelper" do
+        it "calls the helper in index.html.erb" do
+          expect(response.body).to match /AAAA index\.html\.erb AAAA/
+        end
+
+        it "calls the helper in _partial.html.erb" do
+          expect(response.body).to match /AAAA _partial\.html\.erb AAAA/
+        end
+      end
+
+      describe "SomeOtherHelper" do
+        it "calls the helper in index.html.erb" do
+          expect(response.body).to match /BBBB index\.html\.erb BBBB/
+        end
+
+        it "calls the helper in _partial.html.erb" do
+          expect(response.body).to match /BBBB _partial\.html\.erb BBBB/
+        end
+      end
+
+      describe "SubdirHelperTest::Subdir" do
+        it "calls the helper in index.html.erb" do
+          expect(response.body).to match /SUBDIR index\.html\.erb SUBDIR/
+        end
+
+        it "calls the helper in _partial.html.erb" do
+          expect(response.body).to match /SUBDIR _partial\.html\.erb SUBDIR/
+        end
+      end
+    end
+
   end
 
   describe "GET #show" do
